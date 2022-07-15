@@ -187,14 +187,14 @@
          si no cuenta con el token asignado a su equipo la API no le permite interactuar con el servicio. 
         <br>
             <img src="./assets/images/token.png" alt="token cabezera">
-        <br>
+        <br id="tokens">
         <h5>Los tokens de cada grupo son:</h5>
             </p>
             <table class="table table-bordered">
               <thead>
                 <tr>
                   <th>Catalogo</th>
-                  <th>token</th>
+                  <th>Token</th>
                 </tr>
               </thead>
               <tbody>
@@ -248,7 +248,7 @@
             <br> 
           </p>
           <label for="">LegerAccount = Id de la cuenta contable que desea usar</label>
-          <label for="">Temporalmente la unica cuenta contable es la 8 (una cuenta de prueba), <strong> para fines de pruebas en su integracion usar el 8</strong> tan pronto todo este listo sera notificado</label>
+          
           <pre>
             [
               {
@@ -269,7 +269,63 @@
               }
             ]
           </pre>
+          <br>
+          <h5 id="contables">Cuentas contables (LegerAccount)</h5>
+          <table  class="table table-bordered">
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Cuenta contable</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>1</td>
+                <td>Activos</td>
+              </tr>
+              <tr>
+                <td>2</td>
+                <td>Efectivo en caja y banco</td>
+              </tr>
+              <tr>
+                <td>3</td>
+                <td>Caja Chica </td>
+              </tr>
+              <tr>
+                <td>4</td>
+                <td>Cuenta Corriente Banco x</td>
+              </tr>
+              <tr>
+                <td>5</td>
+                <td>Inventarios y Mercancias</td>
+              </tr>
+              <tr>
+                <td>6</td>
+                <td>Inventario</td>
+              </tr>
+              <tr>
+                <td>7</td>
+                <td>Cuentas x Cobrar</td>
+              </tr>
+              <tr>
+                <td>8</td>
+                <td>Cuentas x Cobrar Cliente X</td>
+              </tr>
+              <tr>
+                <td>9</td>
+                <td>Ingresos</td>
+              </tr>
 
+              <tr>
+                <td>10</td>
+                <td>Ventas</td>
+              </tr>
+              <tr>
+                <td>11</td>
+                <td>Ingresos x Ventas</td>
+              </tr>
+            </tbody>
+          </table>
           <p>A la ruta solocite un peticion de tipo <strong>POST</strong> :</p>
           <p><code>https://service-accounting.herokuapp.com/api/AccountingEntry</code></p>
          <br><br>
@@ -289,26 +345,79 @@
 		<!-- Manejo de errores
 		============================ -->
         <section id="idocs_color_schemes">
-          <h2>Working On...</h2>
-          
+          <h2>Manejo de errores</h2>
+         
+
+          <h5>Errores de autenticacion</h5>
+          <p>En caso de que reciba como respuesta:</p>
+          <img src="./assets/images//tokenError.PNG" alt="">
+          <p>Confirme que este usando el <strong> token asignado a su grupo</strong>. <a href="#tokens">Ver tokens</a></p>
+
+
+          <h5>Errores de validacion</h5>
+          <p>Existen varios filtros para asegurar que los datos esten correctos, un ejemplo de estas respuesta seria enviar cantidades diferentes en credito y debito:</p>
+          <img src="./assets/images/diferentes.png" alt="">
+          <p>Lo que provoca el sigiente error:</p>
+          <img src="./assets/images/error.PNG" alt="">
+          <p>A continuacion una tabla con posibles errores que valida el sistema al enviar los datos</p>
         </section>
-        
+        <table class="table table-bordered">
+          <thead>
+            <tr>
+              <th>Codigo del error </th>
+              <th>Razon</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1001 </td>
+              <td>No hay ningun asiento contable.</td>
+            </tr>
+            <tr>
+              <td>1002 </td>
+              <td>El formato del periodo no es correcto.(Debe ser xxxx-xx, una longitud de 7)</td>
+            </tr>
+            <tr>
+              <td>1003 </td>
+              <td>El número de detalles es menor al permitido. Como mínimo deben ser 2 entradas de cuentas, una DB y otra CR.</td>
+            </tr>
+            		<!-- hasta nuevo aviso
+            <tr>
+              <td>1004 </td>
+              <td>El asiento contable no está cuadrado.</td>
+            </tr>
+            	============================ -->
+            <tr>
+              <td>1005 </td>
+              <td>El asiento contable no está cuadrado. Diferentes montos en los detallles de credito y debito</td>
+            </tr>
+            <tr>
+              <td>1006 </td>
+              <td>La cuenta contable con el ID que envia no existe. <a href="#contables">Revisar ID disponibles</a></td>
+            </tr>
+            <tr>
+              <td>1007 </td>
+              <td>El Codigo de la moneda que envia no existe.</td>
+            </tr>
+         
+          </tbody>
+        </table>
 		<hr class="divider">
 		
 		<!-- Customization
-		============================ -->
+	
         <section id="idocs_theme_customization">
           <h2>Working On...</h2>
         </section>
         
 		<hr class="divider">
-		
+			============================ -->
         <!-- Logo Settings
-		============================ -->
+	
         <section id="idocs_logo_settings">
           <h2>Working On...</h2>
         </section>
-		
+			============================ -->
         
 		<hr class="divider">
 	
